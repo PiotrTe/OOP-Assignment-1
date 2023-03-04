@@ -14,8 +14,11 @@ namespace OOP_Assignment_1
         {
             Pack pack = new Pack();
 
-            int userChoice = validation.GetIntInput("Select between 0 and 5",0,5);
-            Console.WriteLine(userChoice);
+            Pack.shuffleCardPack(pack.pack);
+            foreach (Card card in pack.pack)
+            {
+                Console.WriteLine($"{card.Rank} of {card.Suit}");
+            }
         }
     }
 

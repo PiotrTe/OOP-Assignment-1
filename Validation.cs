@@ -14,7 +14,7 @@ namespace OOP_Assignment_1
             bool isValid = int.TryParse(input, out number);
             if (isValid == false)
             {
-                Console.WriteLine($"Value of {input} can is not integer");
+                Console.WriteLine($"Value of '{input}' is not integer");
                 return -1;
             }
             else
@@ -26,7 +26,7 @@ namespace OOP_Assignment_1
 
         public bool ValidateIntRange(int input, int min, int max)
         {
-            if (input <= min || input > max)
+            if (input < min || input > max)
             {
                 Console.WriteLine($"Value of {input} is outside of acceptable boundaries ({min}-{max})");
                 return false;

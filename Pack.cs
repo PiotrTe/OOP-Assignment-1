@@ -33,39 +33,90 @@ namespace OOP_Assignment_1
 
     class Pack
     {
-        List<Card> pack = new List<Card>();
+        public List<Card> pack = new List<Card>();
+        public List<Card> playerCards = new List<Card>();
 
         public Pack()
         {
             {
-                foreach (Suit suit in Enum.GetValues(typeof(Suit)))
+                foreach (Rank rank in Enum.GetValues(typeof(Rank)))
                 {
-                    foreach (Rank rank in Enum.GetValues(typeof(Rank)))
+                    foreach (Suit suit in Enum.GetValues(typeof(Suit)))
                     {
                         pack.Add(new Card(rank, suit));
                     }
                 }
-                foreach (Card card in pack)
-                {
-                    Console.WriteLine($"{card.Rank} of {card.Suit}");
-                }
+
             }
         }
 
-        //public static bool shuffleCardPack(int typeOfShuffle)
-        //{
-        //    int userSelect = 0;
 
+        public static void shuffleCardPack(List<Card> pack)
+        {
+            Validation validation = new Validation();
 
-        //}
-        //public static Card deal()
-        //{
-        //    //Deals one card
+            int shuffleType = validation.GetIntInput($"Choose shuffling method:\n" +
+                $"[1] Fisher Yates shuffle\n" +
+                $"[2] Riffle shuffle\n" +
+                $"[3] No shuffle\n", 1, 3);
+            if (shuffleType == 1)
+            {
+                Random rng = new Random();
+                int n = pack.Count;
+                while (n > 1)
+                {
+                    n--;
+                    int k = rng.Next(n + 1);
+                    Card temp = pack[k];
+                    pack[k] = pack[n];
+                    pack[n] = temp;
+                }
+            }
+            if (shuffleType == 2)
+            {
+                {
+                    for (int i = 0; i < 5; i++)
+                    {
+                        Random rng = new Random();
+                        int n = pack.Count / 2;
+                        List<Card> left = new List<Card>(pack.GetRange(0, n));
+                        List<Card> right = new List<Card>(pack.GetRange(n, n));
+                        pack.Clear();
+                        while (left.Count > 0 && right.Count > 0)
+                        {
+                            if (rng.NextDouble() < 0.5)
+                            {
+                                pack.Add(left[0]);
+                                left.RemoveAt(0);
+                            }
+                            else
+                            {
+                                pack.Add(right[0]);
+                                right.RemoveAt(0);
+                            }
+                        }
+                        pack.AddRange(left);
+                        pack.AddRange(right);
+                    }
 
-        //}
-        //public static List<Card> dealCard(int amount)
-        //{
-        //    //Deals the number of cards specified by 'amount'
-        //}
+                }
+            }
+            if (shuffleType == 3)
+            {
+
+            }
+        }
+        public static void Deal()
+        {
+            playerCards.Add(pack[0]);
+            Pack.RemoveAt(0);
+        }
+        public static void Deal(int amount)
+        {
+            for (int i = 0; i < amount; i++)
+            {
+
+            }
+        }
     }
 }
