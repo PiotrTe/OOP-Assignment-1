@@ -34,7 +34,7 @@ namespace OOP_Assignment_1
     class Pack
     {
         public List<Card> pack = new List<Card>();
-        public List<Card> playerCards = new List<Card>();
+        public List<Card> hand = new List<Card>();
 
         public Pack()
         {
@@ -106,16 +106,32 @@ namespace OOP_Assignment_1
 
             }
         }
-        public static void Deal()
+        public static void Deal(List<Card> pack, List<Card> hand)
         {
-            playerCards.Add(pack[0]);
-            Pack.RemoveAt(0);
+            if (pack.Count <= 0)
+            {
+                Console.WriteLine("There are no more cards in the deck");
+            }
+            else
+            {
+                hand.Add(pack[0]);
+                pack.RemoveAt(0);
+            }
         }
-        public static void Deal(int amount)
+        public static void Deal(List<Card> pack, List<Card> hand, int amount)
         {
             for (int i = 0; i < amount; i++)
             {
-
+                if (pack.Count <= 0)
+                {
+                    Console.WriteLine("There are no more cards in the deck");
+                    break;
+                }
+                else
+                {
+                    hand.Add(pack[0]);
+                    pack.RemoveAt(0);
+                }
             }
         }
     }
