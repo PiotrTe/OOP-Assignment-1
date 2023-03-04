@@ -14,7 +14,7 @@ public enum Suit
 
 public enum Rank
 {
-    Ace = 1,
+    Ace,
     Two,
     Three,
     Four,
@@ -38,8 +38,16 @@ namespace CMP1903M_A01_2223
 
         public Pack()
         {
-            pack.Add(new Card(Suit.Clubs, Rank.King));
-            Console.WriteLine($"{pack[0].Rank} of {pack[0].Suit}");
+            {
+                foreach (Suit suit in Enum.GetValues(typeof(Suit)))
+                {
+                    foreach (Rank rank in Enum.GetValues(typeof(Rank)))
+                    {
+                        pack.Add(new Card(rank, suit));
+                        Console.WriteLine($"{rank} of {suit}");
+                    }
+                }
+            }
         }
 
         //public static bool shuffleCardPack(int typeOfShuffle)

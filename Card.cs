@@ -11,7 +11,7 @@ namespace CMP1903M_A01_2223
         public Suit Suit { get; set; }
         public Rank Rank { get; set; }
 
-        public Card(Suit suit, Rank rank)
+        public Card(Rank rank, Suit suit)
         {
             Suit = suit;
             Rank = rank;
