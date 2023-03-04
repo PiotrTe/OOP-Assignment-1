@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace OOP_Assignment_1
 {
+    // Enumerators for the suits and ranks of the cards
     public enum Suit
     {
         Clubs,
@@ -33,33 +34,37 @@ namespace OOP_Assignment_1
 
     class Pack
     {
+        // List of cards in the pack and the current hand
         public List<Card> pack = new List<Card>();
         public List<Card> hand = new List<Card>();
 
+        // Constructor for creating a new pack of cards
         public Pack()
         {
+            // Loop through each rank and suit to create a new card of each combination
+            foreach (Rank rank in Enum.GetValues(typeof(Rank)))
             {
-                foreach (Rank rank in Enum.GetValues(typeof(Rank)))
+                foreach (Suit suit in Enum.GetValues(typeof(Suit)))
                 {
-                    foreach (Suit suit in Enum.GetValues(typeof(Suit)))
-                    {
-                        pack.Add(new Card(rank, suit));
-                    }
+                    pack.Add(new Card(rank, suit));
                 }
-
             }
         }
 
-
+        // Method for shuffling the pack of cards
         public static void shuffleCardPack(List<Card> pack)
         {
+            // Create an instance of the validation class to get user input
             Validation validation = new Validation();
 
+            // Ask the user to choose a shuffling method
             int shuffleType = validation.GetIntInput($"Choose shuffling method:\n" +
                 $"[1] Fisher Yates shuffle\n" +
                 $"[2] Riffle shuffle\n" +
                 $"[3] No shuffle\n", 1, 3);
-            if (shuffleType == 1)
+
+            // Perform the selected shuffling method
+            if (shuffleType == 1) // Fisher Yates shuffle
             {
                 Random rng = new Random();
                 int n = pack.Count;
@@ -72,65 +77,67 @@ namespace OOP_Assignment_1
                     pack[n] = temp;
                 }
             }
-            if (shuffleType == 2)
+            if (shuffleType == 2) // Riffle shuffle
             {
+                for (int i = 0; i < 5; i++)
                 {
-                    for (int i = 0; i < 5; i++)
+                    Random rng = new Random();
+                    int n = pack.Count / 2;
+                    List<Card> left = new List<Card>(pack.GetRange(0, n));
+                    List<Card> right = new List<Card>(pack.GetRange(n, n));
+                    pack.Clear();
+                    while (left.Count > 0 && right.Count > 0)
                     {
-                        Random rng = new Random();
-                        int n = pack.Count / 2;
-                        List<Card> left = new List<Card>(pack.GetRange(0, n));
-                        List<Card> right = new List<Card>(pack.GetRange(n, n));
-                        pack.Clear();
-                        while (left.Count > 0 && right.Count > 0)
+                        if (rng.NextDouble() < 0.5)
                         {
-                            if (rng.NextDouble() < 0.5)
-                            {
-                                pack.Add(left[0]);
-                                left.RemoveAt(0);
-                            }
-                            else
-                            {
-                                pack.Add(right[0]);
-                                right.RemoveAt(0);
-                            }
+                            pack.Add(left[0]);
+                            left.RemoveAt(0);
                         }
-                        pack.AddRange(left);
-                        pack.AddRange(right);
+                        else
+                        {
+                            pack.Add(right[0]);
+                            right.RemoveAt(0);
+                        }
                     }
-
+                    pack.AddRange(left);
+                    pack.AddRange(right);
                 }
             }
-            if (shuffleType == 3)
+            if (shuffleType == 3) // No shuffle
             {
-
+                // Do nothing
             }
         }
+
+        // Method for dealing one card from the pack to the hand
+        // function to deal one card to the player
         public static void Deal(List<Card> pack, List<Card> hand)
         {
-            if (pack.Count <= 0)
+            if (pack.Count <= 0) // check if there are any cards left in the deck
             {
                 Console.WriteLine("There are no more cards in the deck");
             }
             else
             {
-                hand.Add(pack[0]);
-                pack.RemoveAt(0);
+                hand.Add(pack[0]); // add the top card from the deck to the player's hand
+                pack.RemoveAt(0); // remove the card from the deck
             }
         }
+
+        // function to deal a specified number of cards to the player
         public static void Deal(List<Card> pack, List<Card> hand, int amount)
         {
             for (int i = 0; i < amount; i++)
             {
-                if (pack.Count <= 0)
+                if (pack.Count <= 0) // check if there are any cards left in the deck
                 {
                     Console.WriteLine("There are no more cards in the deck");
                     break;
                 }
                 else
                 {
-                    hand.Add(pack[0]);
-                    pack.RemoveAt(0);
+                    hand.Add(pack[0]); // add the top card from the deck to the player's hand
+                    pack.RemoveAt(0); // remove the card from the deck
                 }
             }
         }
