@@ -4,14 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CMP1903M_A01_2223
+namespace OOP_Assignment_1
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Pack pack = new Pack();
-            Console.WriteLine("Hello");
+            Testing testing = new Testing();
         }
     }
 }

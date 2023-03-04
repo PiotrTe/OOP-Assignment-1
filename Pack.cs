@@ -4,33 +4,32 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-public enum Suit
+namespace OOP_Assignment_1
 {
-    Clubs,
-    Diamonds,
-    Hearts,
-    Spades
-}
+    public enum Suit
+    {
+        Clubs,
+        Diamonds,
+        Hearts,
+        Spades
+    }
 
-public enum Rank
-{
-    Ace,
-    Two,
-    Three,
-    Four,
-    Five,
-    Six,
-    Seven,
-    Eight,
-    Nine,
-    Ten,
-    Jack,
-    Queen,
-    King
-}
-
-namespace CMP1903M_A01_2223
-{
+    public enum Rank
+    {
+        Ace,
+        Two,
+        Three,
+        Four,
+        Five,
+        Six,
+        Seven,
+        Eight,
+        Nine,
+        Ten,
+        Jack,
+        Queen,
+        King
+    }
 
     class Pack
     {
@@ -44,15 +43,19 @@ namespace CMP1903M_A01_2223
                     foreach (Rank rank in Enum.GetValues(typeof(Rank)))
                     {
                         pack.Add(new Card(rank, suit));
-                        Console.WriteLine($"{rank} of {suit}");
                     }
+                }
+                foreach (Card card in pack)
+                {
+                    Console.WriteLine($"{card.Rank} of {card.Suit}");
                 }
             }
         }
 
         //public static bool shuffleCardPack(int typeOfShuffle)
         //{
-        //    //Shuffles the pack based on the type of shuffle
+        //    int userSelect = 0;
+
 
         //}
         //public static Card deal()
