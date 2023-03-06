@@ -110,7 +110,8 @@ namespace OOP_Assignment_1
             return false;
         }
 
-        // Method for dealing one card from the pack to the hand
+        // Methods for dealing one card from the pack to the hand
+
         // function to deal one card to the player
         public static Card deal()
         {

@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 namespace OOP_Assignment_1
 {
     // A class for validating user inputs
-    internal abstract class Validation
-    {
-        // A method for validating if an input is an integer or not
-        public static int ValidateInt(string input)
+    internal abstract class Validation                                                        //         <------- Additional class to those provided by the base code        //
+    {                                                                                     
+        // A method for validating if an input is an integer or not                       
+        public static int ValidateInt(string input)                                           //         <------- Additional method to those provided by the base code        //
         {
             int number;
             bool isValid = int.TryParse(input, out number); // Try to parse the input as an integer
@@ -26,7 +26,7 @@ namespace OOP_Assignment_1
         }
 
         // A method for validating if an integer is within a certain range or not
-        public static bool ValidateIntRange(int input, int min, int max)
+        public static bool ValidateIntRange(int input, int min, int max)                      //         <------- Additional method to those provided by the base code        //
         {
             if (input < min || input > max) // If the input is outside the given range, display an error message
             {
@@ -40,7 +40,7 @@ namespace OOP_Assignment_1
         }
 
         // A method for getting an integer input from the user within a certain range
-        public static int GetIntInput(string inputMessage, int min, int max)
+        public static int GetIntInput(string inputMessage, int min, int max)                  //         <------- Additional method to those provided by the base code        //
         {
             string input;
             int intInput;
@@ -56,7 +56,8 @@ namespace OOP_Assignment_1
                 }
                 else
                 {
-                    if (ValidateIntRange(intInput, min, max)) // If the input is within the given range, return the input value
+                    // If the input is within the given range, return the input value
+                    if (ValidateIntRange(intInput, min, max))                                 //         <------- Additional method to those provided by the base code        //
                     {
                         break;
                     }

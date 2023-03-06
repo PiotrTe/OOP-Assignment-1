@@ -9,7 +9,7 @@ namespace OOP_Assignment_1
     internal class Testing : Validation
     {
 
-        public Testing()
+        public Testing()                                            //         <------- Additional method to those provided by the base code        //
         {
             // Create a new instance of the Pack class and shuffle the cards
             Pack pack = new Pack();
