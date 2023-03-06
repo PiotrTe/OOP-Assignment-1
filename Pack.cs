@@ -32,7 +32,7 @@ namespace OOP_Assignment_1
         King
     }
 
-    class Pack
+    class Pack : Validation
     {
         // List of cards in the pack and the current hand
         public static List<Card> pack = new List<Card>();
@@ -54,11 +54,8 @@ namespace OOP_Assignment_1
         // Method for shuffling the pack of cards
         public static bool shuffleCardPack()
         {
-            // Create an instance of the validation class to get user input
-            Validation validation = new Validation();
-
             // Ask the user to choose a shuffling method
-            int shuffleType = validation.GetIntInput($"Choose shuffling method:\n" +
+            int shuffleType = GetIntInput($"Choose shuffling method:\n" +
                 $"[1] Fisher Yates shuffle\n" +
                 $"[2] Riffle shuffle\n" +
                 $"[3] No shuffle\n", 1, 3);

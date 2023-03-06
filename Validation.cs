@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 namespace OOP_Assignment_1
 {
     // A class for validating user inputs
-    internal class Validation
+    internal abstract class Validation
     {
         // A method for validating if an input is an integer or not
-        public int ValidateInt(string input)
+        public static int ValidateInt(string input)
         {
             int number;
             bool isValid = int.TryParse(input, out number); // Try to parse the input as an integer
@@ -26,7 +26,7 @@ namespace OOP_Assignment_1
         }
 
         // A method for validating if an integer is within a certain range or not
-        public bool ValidateIntRange(int input, int min, int max)
+        public static bool ValidateIntRange(int input, int min, int max)
         {
             if (input < min || input > max) // If the input is outside the given range, display an error message
             {
@@ -40,7 +40,7 @@ namespace OOP_Assignment_1
         }
 
         // A method for getting an integer input from the user within a certain range
-        public int GetIntInput(string inputMessage, int min, int max)
+        public static int GetIntInput(string inputMessage, int min, int max)
         {
             string input;
             int intInput;
