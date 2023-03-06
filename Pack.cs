@@ -17,7 +17,7 @@ namespace OOP_Assignment_1
 
     public enum Rank
     {
-        Ace,
+        Ace = 1,
         Two,
         Three,
         Four,
@@ -35,8 +35,8 @@ namespace OOP_Assignment_1
     class Pack
     {
         // List of cards in the pack and the current hand
-        public List<Card> pack = new List<Card>();
-        public List<Card> hand = new List<Card>();
+        public static List<Card> pack = new List<Card>();
+        public static List<Card> hand = new List<Card>();
 
         // Constructor for creating a new pack of cards
         public Pack()
@@ -52,7 +52,7 @@ namespace OOP_Assignment_1
         }
 
         // Method for shuffling the pack of cards
-        public static void shuffleCardPack(List<Card> pack)
+        public static bool shuffleCardPack()
         {
             // Create an instance of the validation class to get user input
             Validation validation = new Validation();
@@ -76,6 +76,7 @@ namespace OOP_Assignment_1
                     pack[k] = pack[n];
                     pack[n] = temp;
                 }
+                return true;
             }
             if (shuffleType == 2) // Riffle shuffle
             {
@@ -102,16 +103,19 @@ namespace OOP_Assignment_1
                     pack.AddRange(left);
                     pack.AddRange(right);
                 }
+                return true;
             }
             if (shuffleType == 3) // No shuffle
             {
+                return false;
                 // Do nothing
             }
+            return false;
         }
 
         // Method for dealing one card from the pack to the hand
         // function to deal one card to the player
-        public static void Deal(List<Card> pack, List<Card> hand)
+        public static Card deal()
         {
             if (pack.Count <= 0) // check if there are any cards left in the deck
             {
@@ -122,11 +126,14 @@ namespace OOP_Assignment_1
                 hand.Add(pack[0]); // add the top card from the deck to the player's hand
                 pack.RemoveAt(0); // remove the card from the deck
             }
+            return pack[0];
         }
 
         // function to deal a specified number of cards to the player
-        public static void Deal(List<Card> pack, List<Card> hand, int amount)
+        public static List<Card> dealCard(int amount)
         {
+            List<Card> temp = new List<Card>();
+
             for (int i = 0; i < amount; i++)
             {
                 if (pack.Count <= 0) // check if there are any cards left in the deck
@@ -136,10 +143,12 @@ namespace OOP_Assignment_1
                 }
                 else
                 {
+                    temp.Add(pack[0]);
                     hand.Add(pack[0]); // add the top card from the deck to the player's hand
                     pack.RemoveAt(0); // remove the card from the deck
                 }
             }
+            return temp;
         }
     }
 }

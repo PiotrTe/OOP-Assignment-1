@@ -8,17 +8,18 @@ namespace OOP_Assignment_1
 {
     internal class Testing
     {
-        // Create an instance of the Validation class to validate user input
-        Validation validation = new Validation();
 
         public Testing()
         {
             // Create a new instance of the Pack class and shuffle the cards
             Pack pack = new Pack();
-            Pack.shuffleCardPack(pack.pack);
+            Pack.shuffleCardPack();
+
+            // Create an instance of the Validation class to validate user input
+            Validation validation = new Validation();
 
             // Print out the shuffled pack of cards
-            foreach (Card card in pack.pack)
+            foreach (Card card in Pack.pack)
             {
                 Console.WriteLine($"{card.Rank} of {card.Suit}");
             }
@@ -32,15 +33,15 @@ namespace OOP_Assignment_1
 
                 if (userInput == 1)
                 {
-                    Pack.Deal(pack.pack, pack.hand);
+                    Pack.deal();
                 }
 
                 if (userInput == 2)
                 {
-                    Pack.Deal(pack.pack, pack.hand, 5);
+                    Pack.dealCard(5);
                 }
 
-                foreach (Card card in pack.hand)
+                foreach (Card card in Pack.hand)
                 {
                     Console.WriteLine($"{card.Rank} of {card.Suit}");
                 }
