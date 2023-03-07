@@ -17,7 +17,7 @@ namespace OOP_Assignment_1
             if (isValid == false)
             {
                 Console.WriteLine($"Value of '{input}' is not integer"); // If the input is not an integer, display an error message
-                return -1;
+                return -2147483648;
             }
             else
             {
@@ -50,8 +50,9 @@ namespace OOP_Assignment_1
                 input = Console.ReadLine(); // Get input from the user
                 intInput = ValidateInt(input); // Validate the input as an integer
 
-                if (intInput == -1) // If the input is not valid, ask for input again
+                if (intInput == -2147483648) // If the input is not valid, ask for input again
                 {
+
                     continue;
                 }
                 else
